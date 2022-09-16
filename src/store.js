@@ -5,4 +5,4 @@ export const pokeInfo = writable({
   name: "adam",
 });
 
-export const currentIdx = writable(1);
+export const currentIdx = writable("1");
