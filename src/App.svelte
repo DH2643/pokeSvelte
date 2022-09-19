@@ -1,10 +1,9 @@
 <script>
   import NumberEditor from './lib/NumberEditor.svelte';
   import PokePresenter from './lib/PokePresenter.svelte';
-  import { currentIdx, isFetching } from './store';
+  import { currentIdx } from './store';
 
   const getPokemonName = async (idxToFetch) => {
-    isFetching.set(true)
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${idxToFetch}`);
     let result = await response.json();
 
