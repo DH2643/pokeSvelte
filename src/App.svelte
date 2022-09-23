@@ -1,24 +1,7 @@
 <script>
   import NumberEditor from './lib/NumberEditor.svelte';
   import PokePresenter from './lib/PokePresenter.svelte';
-  import { currentIdx } from './store';
-
-  const getPokemonName = async (idxToFetch) => {
-    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${idxToFetch}`);
-    let result = await response.json();
-
-    return result.name;
-  }
-
-  let pokemonIdx;
-  let pokemonName;
-  let promise;
-  currentIdx.subscribe((val) => {
-    pokemonIdx = val;
-    promise = getPokemonName(val)
-      .then((name) => pokemonName = name)
-      .catch((e) => console.error(e))
-  })
+  import { currentIdx, currentPokemonName, fetchPromise } from './store';
 
   const updateCurrentIdx = (e) => {
     const newIdx = e.detail
@@ -30,14 +13,13 @@
 
 <main>
   <div>
-    <NumberEditor currentNumber={pokemonIdx} on:numberChange={updateCurrentIdx} />
+    <NumberEditor currentNumber={$currentIdx} on:numberChange={updateCurrentIdx} />
   </div>
   <div class="content">
-    {#await promise}
-      <!-- svelte-ignore a11y-missing-attribute -->
-      <img src="https://www.csc.kth.se/~cristi/loading.gif" height={200} />
+    {#await $fetchPromise}
+      <img src="https://www.csc.kth.se/~cristi/loading.gif" height={200} alt="loading spinner"  />
     {:then}
-      <PokePresenter pokemonIdx={pokemonIdx} pokemonName={pokemonName} />
+      <PokePresenter pokemonIdx={$currentIdx} pokemonName={$currentPokemonName} />
     {/await}
   </div>
 </main>
