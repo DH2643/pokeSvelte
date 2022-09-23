@@ -2,6 +2,9 @@
 
 This application is a minimal example to illustrate how Svelte can be used to create a simple Pokémon explorer.
 
+### Architecture Description
+[Google Spreadsheet](https://docs.google.com/presentation/d/1PKJ-AzoSpSbU27XVTC9xfXL7ZO3s9QpJTDteQx_RxMo/edit?usp=sharing)
+
 ### Starting the application
 
 1. Clone the repository
