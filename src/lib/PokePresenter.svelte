@@ -1,14 +1,17 @@
 <script>
   import PokeIdNameView from './PokeInfoView.svelte';
 
-  export let pokemonIdx;
+  /** Expose props to the component that is rendering this component */
+  export let pokemonId;
   export let pokemonName;
 
-  let pokeInfoComponent = PokeIdNameView;
-  let pokeInfoProps;
-  $: pokeInfoProps =  {pokeIdProp: pokemonIdx, pokeNameProp: pokemonName, pokeImgSrc: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIdx}.png`};
+  /** Generate the pokemon image path */
+  const pokemonImgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`
+
+  /** Create an object with the props that will be passed to the view  */
+  const pokeInfoProps =  {pokemonId, pokemonName, pokemonImgSrc};
 </script>
 
 <div>
-  <svelte:component this={pokeInfoComponent} {...pokeInfoProps}/>
+  <svelte:component this={PokeIdNameView} {...pokeInfoProps}/>
 </div>

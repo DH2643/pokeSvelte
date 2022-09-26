@@ -1,9 +1,8 @@
 <script>
-    export let pokeIdProp
-    export let pokeNameProp
-    export let pokeImgSrc
+    export let pokemonId
+    export let pokemonName
+    export let pokemonImgSrc
 </script>
 
-<h1>{pokeIdProp} {pokeNameProp}</h1>
-<!-- svelte-ignore a11y-missing-attribute -->
-<img src={pokeImgSrc} height={200}/>
+<h1>{pokemonId} {pokemonName}</h1>
+<img src={pokemonImgSrc} height={200} alt={`Image of ${pokemonName}`}/>
